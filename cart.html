@@ -35,7 +35,7 @@
 
 <body>
     <!-- Spinner Start -->
-   
+  
     <!-- Spinner End -->
 
 
@@ -55,7 +55,7 @@
                         <a href="index.html" class="nav-item nav-link">Home</a>
                         <a href="about.html" class="nav-item nav-link">About</a>
                         <a href="product.html" class="nav-item nav-link">Products</a>
-                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="cart.html" class="btn btn-dark py-2 px-4 me-3 animated slideInRight">Shop Now</a>
                 </div>
@@ -68,12 +68,12 @@
     <!-- Hero Start -->
     <div class="container-fluid bg-primary hero-header mb-5">
         <div class="container text-center">
-            <h1 class="display-4 text-white mb-3 animated slideInDown">Contact</h1>
+            <h1 class="display-4 text-white mb-3 animated slideInDown">Cart</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center mb-0 animated slideInDown">
-                    <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
                     <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Cart</li>
                 </ol>
             </nav>
         </div>
@@ -81,72 +81,28 @@
     <!-- Hero End -->
 
 
-    <div class="container-fluid py-5">
-        <div class="container">
-            <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
-                <h1 class="text-primary mb-5"><span class="fw-light text-dark">If You Have Any Query,</span> Please Contact Us</h1>
-            </div>
-            <div class="row g-5">
-                <div class="col-lg-7 wow fadeIn" data-wow-delay="0.1s">
-                    <p class="mb-4">Feel free to send us an email directly using this form!</p>
-                    <div class="wow fadeIn" data-wow-delay="0.3s">
-                        <form onsubmit="sendEmail(event)">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
-                                        <label for="name">Your Name</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
-                                        <label for="email">Your Email</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required>
-                                        <label for="subject">Subject</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px" required></textarea>
-                                        <label for="message">Message</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-5 wow fadeIn" data-wow-delay="0.5s">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.0497269353896!2d28.09253672790382!3d-25.98104432778798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9571c88d51544d%3A0xa277a92e25651e47!2s23%20Walton%20Ave%2C%20Carlswald%2C%20Midrand%2C%201684!5e1!3m2!1sen!2sza!4v1736679247933!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+    <!-- cart Start -->
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Your Cart</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="cartItems">
+                <!-- Items will be dynamically added here -->
+            </tbody>
+        </table>
+        <div class="text-end">
+            <h4>Total: <span id="totalPrice">R0.00</span></h4>
+            <button class="btn btn-primary" onclick="checkout()">Checkout</button>
         </div>
     </div>
-    
-    <script>
-        function sendEmail(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-    
-            const mailtoLink = `mailto:reo.0410@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-                `Hello,\n\nMy name is ${name}.\n\nMessage:\n${message}\n\nEmail: ${email}`
-            )}`;
-    
-            window.location.href = mailtoLink;
-        }
-    </script>
-    
-    <!-- Contact End -->
+    <!-- cart End -->
         
 
     <!-- Newsletter Start -->
@@ -177,18 +133,16 @@
             <div class="row g-5">
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
                     <a href="index.html" class="d-inline-block mb-3">
-                        <h1 class="text-primary">Real Care Skin Products</h1>
+                        <h1 class="text-primary">Hairnic</h1>
                     </a>
-                    <p>At Real Care Products, we believe in the power of nature to bring out your skin's natural glow. All our products are made with love, care, and 100% natural ingredients to give you the healthy, radiant skin you deserve. Your beauty, naturally enhanced!</p>
-                <p class="mb-0"><strong>Stay real. Stay beautiful.</strong></p>
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aliquet, erat non
+                        malesuada consequat, nibh erat tempus risus, vitae porttitor purus nisl vitae purus.</p>
                 </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.3s">
                     <h5 class="mb-4">Get In Touch</h5>
-                    <p><i class="fa fa-map-marker-alt me-3"></i>23 Walton Road, Walford Estate,
-                        Carlswald, 1867</p>
-                    <p><i class="fa fa-phone-alt me-3"></i>+27 78 572 6840</p>
-                    <p><i class="fa fa-envelope me-3"></i>reo.0410@gmail.com
-                    </p>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-square btn-outline-primary me-1" href=""><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-square btn-outline-primary me-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -197,13 +151,21 @@
                                 class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                
+                <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.5s">
+                    <h5 class="mb-4">Our Products</h5>
+                    <a class="btn btn-link" href="">Hair Shining Shampoo</a>
+                    <a class="btn btn-link" href="">Anti-dandruff Shampoo</a>
+                    <a class="btn btn-link" href="">Anti Hair Fall Shampoo</a>
+                    <a class="btn btn-link" href="">Hair Growing Shampoo</a>
+                    <a class="btn btn-link" href="">Anti smell Shampoo</a>
+                </div>
                 <div class="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.7s">
                     <h5 class="mb-4">Popular Link</h5>
-                    <a class="btn btn-link" href="index.html">Home</a>
-                    <a class="btn btn-link" href="about.html">About Us</a>
-                    <a class="btn btn-link" href="product.html">Products</a>
-                    <a class="btn btn-link" href="contact.html">Contact Us</a>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">Career</a>
                 </div>
             </div>
         </div>
@@ -211,12 +173,20 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Real Care Skin Products</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
 
-                        
-                        Designed By M-Sithole Digital Solutions
-                           </div>
-                     </div>
+                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                        Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FAQs</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -234,6 +204,7 @@
     <script src="lib/easing/easing.min.js"></script>
     <script src="lib/waypoints/waypoints.min.js"></script>
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="js/cart.js"></script>
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

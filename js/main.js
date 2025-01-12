@@ -93,3 +93,111 @@
     
 })(jQuery);
 
+
+
+let cart = [];
+
+// Example product data
+const products = [
+    { id: 1, name: "Shea Butter Body Cream", price: 200 },
+    // Add more products here
+];
+
+// Function to add products to the cart
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    const existingProduct = cart.find(item => item.id === productId);
+
+    if (existingProduct) {
+        existingProduct.quantity++;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+
+    updateCart();
+}
+
+// Function to update the cart display
+function updateCart() {
+    const cartItems = document.getElementById("cartItems");
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        total += subtotal;
+
+        cartItems.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td>R${item.price}</td>
+                <td>${item.quantity}</td>
+                <td>R${subtotal}</td>
+            </tr>
+        `;
+    });
+
+    document.getElementById("totalPrice").innerText = `R${total}`;
+}
+
+// Function to handle checkout
+function checkout() {
+    alert("Redirecting to payment gateway...");
+    // Here you can integrate with your payment provider
+}
+
+
+
+function checkout() {
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    const payfastForm = `
+        <form action="https://www.payfast.co.za/eng/process" method="POST">
+            <input type="hidden" name="merchant_id" value="YOUR_MERCHANT_ID">
+            <input type="hidden" name="merchant_key" value="YOUR_MERCHANT_KEY">
+            <input type="hidden" name="amount" value="${total}">
+            <input type="hidden" name="item_name" value="Real Care Products">
+            <button type="submit">Proceed to Payment</button>
+        </form>
+    `;
+
+    document.body.innerHTML += payfastForm;
+    document.querySelector("form").submit();
+}
+
+
+// Get all "Add to Cart" buttons
+const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+
+// Initialize cart from localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Add event listener for each button
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const product = {
+            id: button.dataset.id,
+            name: button.dataset.name,
+            price: button.dataset.price,
+            image: button.dataset.image,
+            quantity: 1
+        };
+
+        // Check if product already exists in cart
+        const existingProduct = cart.find(item => item.id === product.id);
+        if (existingProduct) {
+            existingProduct.quantity++;
+        } else {
+            cart.push(product);
+        }
+
+        // Save cart to localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${product.name} has been added to your cart.`);
+    });
+});
+
+
+
+
+
